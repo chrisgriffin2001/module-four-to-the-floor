@@ -1,4 +1,4 @@
-var finances = [
+let finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -86,3 +86,63 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+let months = finances.length;
+let total =0;
+let change = 0;
+let analysis;
+let net = 0;
+let netArray = [];
+let netChangeSum = 0;
+
+//min
+//max
+let least = ['', 9999999999999]
+let greatest = ['', 0]
+ //let least = 
+//let greatest =
+
+for (let index = 0; index < finances.length; index++) {
+   for (let index2 = 0; index2 < finances[index].length; index2++) {
+    
+    if(typeof finances[index][index2] !== 'string'){
+        total += finances[index][index2];
+        change = finances[index][index2] - net;
+        net = finances[index][index2];
+        netArray.push(change);
+
+        if (change > greatest[1]){
+            greatest = [finances[index][0], finances[index][1]]
+
+
+        }
+
+        if(change < least[1]){
+            least = [finances[index][0], finances[index][1]]
+        }
+
+    }
+    
+   }
+    
+}
+
+for (let index = 0; index < netArray.length; index++) {
+    netChangeSum += netArray [index];
+    
+    
+}
+
+average = Math.round((netChangeSum / finances.length) * 100) /100;
+
+analysis = 'Financial Analysis' + '\n' +
+'-----------------------' + '\n' +
+'Total months: ' + months + '\n' +
+'Total: $' + total + '\n' +
+'Average change: ' + average + '\n' +
+'Greatest Increase in Profits: ' + greatest[0] + ': $' + greatest[1] + '\n' +
+'Greatest Decrease in Profits: ' + least[0] + ':$' + least[1] + '\n'
+
+
+
+console.log(analysis)
